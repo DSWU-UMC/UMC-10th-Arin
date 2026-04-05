@@ -29,6 +29,11 @@ export default function MoviePage() {
     const { category = 'popular' } = useParams<{
         category?: string;
     }>();
+
+    // 카테고리 바뀌면 1번째 페이지로 초기화
+    useEffect (() => {
+        setPage(1);
+    }, [category]);
     
     useEffect(() => {
         const fetchMovies = async (): Promise<void> => {

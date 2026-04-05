@@ -22,7 +22,37 @@ export type MovieResponse = {
     total_results: number
 };
 
-{/* 위의 코드에 대한 설명
+// 영화 상세 페이지용 타입
+export interface MovieDetail {
+    id: number;
+    title: string;
+    poster_path: string;
+    vote_average: number;
+    release_date: string;
+    overview: string;
+    runtime: number,
+    tagline: string;
+    genres: {
+        id: number,
+        name: string,
+    }[];
+}
+
+// 출연진 1명 타입
+export interface Cast {
+    id: number;
+    name: string;
+    character: string;
+    // 사진 경로 null일 수도 있음 (사진 없는 배우)
+    profile_path: string | null; 
+}
+
+// 크레딧 전체 타입
+export interface Credits {
+    cast: Cast[];
+}
+
+/* 위의 코드에 대한 설명
 const {data} = await axios(
     'https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1',
     {
@@ -37,4 +67,4 @@ axios의 기본값은 get으로 이번 미션에서는 get으로 사용하고 �
 
 data에는 results에 있는 영화 정보뿐만 아니라 page, total_pages, total_results에 대한 정보도 있음
 
-*/}
+*/

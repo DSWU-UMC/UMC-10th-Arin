@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       },
       // 영화 포스터 눌렀을 때 상세 페이지로 이동
       {
-        path: 'movies/:movieId',
+        path: 'movie/:movieId',
         element: <MovieDetailPage />,
       }
     ],
