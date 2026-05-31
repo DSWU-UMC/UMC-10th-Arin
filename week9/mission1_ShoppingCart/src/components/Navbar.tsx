@@ -1,31 +1,26 @@
 import { FaShoppingCart } from 'react-icons/fa';
-import { useSelector, useDispatch } from '../hooks/useCustomRedux';
 import { useEffect } from 'react';
-import { calculateTotals } from '../slices/cartSlice';
+import useCartStore from '../store/useCartStore';
 
 const Navbar = () => {
-    // 장바구니 수량 변경
-    const { amount, cartItems } = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
+    const { amount, cartItems, calculateTotals } = useCartStore();
 
     useEffect(() => {
-        dispatch(calculateTotals());
-    }, [dispatch, cartItems])
+        calculateTotals();
+    }, [cartItems]);
 
     return (
-    <div className='flex justify-between item-center p-4 bg-gray-800
-        text-white'>
-        <h1 
-            onClick = {() => {
-            window.location.href = '/';
-            }}
-            className='text-2xl font-semibold'>Hello World</h1>
-        <div className='flex items-center space-x-2'>
-            <FaShoppingCart className='text-2xl'/>
-            <span className='text-xl font-medium'>{amount}</span>
+        <div className='flex justify-between item-center p-4 bg-gray-800 text-white'>
+            <h1
+                onClick={() => { window.location.href = '/'; }}
+                className='text-2xl font-semibold cursor-pointer'
+            >Hello World</h1>
+            <div className='flex items-center space-x-2'>
+                <FaShoppingCart className='text-2xl' />
+                <span className='text-xl font-medium'>{amount}</span>
+            </div>
         </div>
-    </div>
-    )
+    );
 };
 
 export default Navbar;
