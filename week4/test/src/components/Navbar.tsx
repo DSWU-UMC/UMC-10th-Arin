@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const LINKS = [
   { to: '/', label: '홈' },
@@ -9,8 +9,6 @@ const LINKS = [
 ];
 
 export const Navbar = () => {
-  const navigate = useNavigate();
-
   return (
     <div className='flex items-center justify-between px-4 py-3'>
       <div className='flex gap-3'>
@@ -26,13 +24,28 @@ export const Navbar = () => {
           </NavLink>
         ))}
       </div>
-      <button
-        onClick={() => navigate('/login')}
-        className='bg-[#dda5e3] text-white px-4 py-2 rounded-lg text-sm
-        hover:bg-[#b2dab1] transition-all duration-200 cursor-pointer'
-      >
-        로그인
-      </button>
+      <div className='flex gap-2'>
+        <NavLink
+          to='/login'
+          className={({ isActive }) =>
+            isActive
+              ? 'bg-[#b2dab1] text-white px-4 py-2 rounded-lg text-sm cursor-pointer'
+              : 'bg-[#dda5e3] text-white px-4 py-2 rounded-lg text-sm cursor-pointer'
+          }
+        >
+          로그인
+        </NavLink>
+        <NavLink
+          to='/signup'
+          className={({ isActive }) =>
+            isActive
+              ? 'bg-[#b2dab1] text-white px-4 py-2 rounded-lg text-sm cursor-pointer'
+              : 'bg-[#dda5e3] text-white px-4 py-2 rounded-lg text-sm cursor-pointer'
+          }
+        >
+          회원가입
+        </NavLink>
+      </div>
     </div>
   );
 };
